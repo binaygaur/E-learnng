@@ -1,0 +1,167 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com;
+import java.util.*;
+/**
+ *
+ * @author Administrator
+ */
+import java.sql.*;
+public class MyConnection {
+    Connection c;
+    public Connection getConnection()
+    {
+        try
+        {
+           Class.forName("com.mysql.jdbc.Driver");
+            c = DriverManager.getConnection("jdbc:mysql://localhost/Final_Teacher","root","");	
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return c;
+    }
+    
+      //inserting test in create test and chapter_test
+    public int insertTest(ArrayList<Integer> al,ArrayList<String> al2)
+    {
+         Connection c2=null;
+       try
+       {
+           c2=getConnection();
+           PreparedStatement ps=c2.prepareStatement("INSERT INTO Chapter_Test VALUES(?,?,?)");
+			ps.setInt(1, al.get(0));
+			ps.setInt(2,  al.get(1));
+			ps.setInt(3,  al.get(2));
+			ps.executeUpdate();
+			
+			PreparedStatement ps1=c2.prepareStatement("INSERT INTO Create_Test(Test_Id,Test_Name,Test_Time,No_of_section) VALUES(?,?,?,?)");
+			ps1.setInt(1, Integer.parseInt(al2.get(0)));
+			ps1.setString(2, al2.get(1));
+			ps1.setString(3, al2.get(2));
+			ps1.setInt(4,Integer.parseInt(al2.get(3)));
+			ps1.executeUpdate();
+       }
+       catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+       finally
+       {
+           try
+           {
+               c2.close();
+           }
+           catch(Exception e)
+           {
+                e.printStackTrace();
+           }
+       }
+     return 1;   
+    }
+    
+    //  //geting test id
+    public int getTestId()
+    {
+        int n=0;
+        Connection c2=null;
+         try
+       {
+           c2=getConnection();
+           PreparedStatement ps=c2.prepareStatement("SELECT Test_Id FROM Chapter_Test ORDER BY Test_Id DESC LIMIT 1");	
+            ResultSet rs=ps.executeQuery();
+		while(rs.next())
+		{
+			n=rs.getInt(1);
+		}	
+       }
+       catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+       finally
+       {
+           try
+           {
+               c2.close();
+           }
+           catch(Exception e)
+           {
+                e.printStackTrace();
+           }
+       }
+        return n;
+    }
+    
+    //geting test question id
+    public int getTestQuestionId()
+    {
+        int n=0;
+        Connection c2=null;
+         try
+       {
+           c2=getConnection();
+           PreparedStatement ps=c2.prepareStatement("SELECT Question_Id FROM Test_Questions ORDER BY Question_Id DESC LIMIT 1");	
+            ResultSet rs=ps.executeQuery();
+		while(rs.next())
+		{
+			n=rs.getInt(1);
+		}	
+       }
+       catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+       finally
+       {
+           try
+           {
+               c2.close();
+           }
+           catch(Exception e)
+           {
+                e.printStackTrace();
+           }
+       }
+        return n;
+    }
+      //geting test question option id
+     public int getTestOptionId()
+    {
+        int n=0;
+        Connection c2=null;
+         try
+       {
+           c2=getConnection();
+           PreparedStatement ps=c2.prepareStatement("SELECT Option_Id FROM Test_Options ORDER BY Option_Id DESC LIMIT 1");	
+            ResultSet rs=ps.executeQuery();
+		while(rs.next())
+		{
+			n=rs.getInt(1);
+		}	
+       }
+       catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+       finally
+       {
+           try
+           {
+               c2.close();
+           }
+           catch(Exception e)
+           {
+                e.printStackTrace();
+           }
+       }
+        return n;
+    }
+    
+    
+}
