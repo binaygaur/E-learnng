@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 03, 2014 at 10:43 AM
+-- Generation Time: Jun 10, 2014 at 10:47 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.16
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `assignment_questions` (
   `explanation` varchar(255) NOT NULL,
   `answer` varchar(255) NOT NULL,
   PRIMARY KEY (`Question_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `assignment_questions`
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `chapter_added` (
   `Subject_Id` int(11) NOT NULL,
   `Class_ID` int(11) NOT NULL,
   PRIMARY KEY (`Chapter_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `chapter_added`
@@ -142,7 +142,8 @@ INSERT INTO `chapter_added` (`Chapter_Id`, `Teacher_Id`, `Subject_Id`, `Class_ID
 (11, 13, 2, 1),
 (12, 13, 1, 1),
 (13, 13, 1, 1),
-(14, 13, 1, 1);
+(14, 13, 1, 1),
+(15, 13, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -155,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `chapter_assignment` (
   `Teacher_Id` int(11) NOT NULL,
   `Chapter_Id` int(11) NOT NULL,
   PRIMARY KEY (`Assignment_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `chapter_assignment`
@@ -178,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `chapter_test` (
   `Chapter_Id` int(11) NOT NULL,
   `Teacher_Id` int(11) NOT NULL,
   PRIMARY KEY (`Test_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `chapter_test`
@@ -190,7 +191,8 @@ INSERT INTO `chapter_test` (`Test_Id`, `Chapter_Id`, `Teacher_Id`) VALUES
 (3, 7, 13),
 (4, 7, 13),
 (5, 12, 13),
-(6, 13, 13);
+(6, 13, 13),
+(7, 7, 13);
 
 -- --------------------------------------------------------
 
@@ -224,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `create_assignment` (
   `Assignment_Type` varchar(100) NOT NULL,
   `Upload_Date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Assignment_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `create_assignment`
@@ -260,7 +262,128 @@ INSERT INTO `create_test` (`Test_Id`, `Test_Name`, `Test_Time`, `No_of_section`,
 (3, 'SQL', '00:20:00', 2, '2014-05-29 06:38:51'),
 (4, 'Hibernate', '00:05:00', 2, '2014-05-30 07:22:20'),
 (5, 'Hibernate basics', '00:02:00', 1, '2014-06-02 04:05:57'),
-(6, 'Jdbc basics', '00:02:00', 1, '2014-06-02 10:32:19');
+(6, 'Jdbc basics', '00:02:00', 1, '2014-06-02 10:32:19'),
+(7, 'Swing', '12:00:00', 2, '2014-06-05 06:35:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lms_main_admin`
+--
+
+CREATE TABLE IF NOT EXISTS `lms_main_admin` (
+  `ADMIN_ID` int(11) NOT NULL,
+  `USER_NAME` varchar(32) NOT NULL,
+  `PASSWORD` varchar(50) NOT NULL,
+  PRIMARY KEY (`ADMIN_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lms_main_admin`
+--
+
+INSERT INTO `lms_main_admin` (`ADMIN_ID`, `USER_NAME`, `PASSWORD`) VALUES
+(101, 'Binay Gaur', 'admin'),
+(102, 'Pankaj', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lms_main_student`
+--
+
+CREATE TABLE IF NOT EXISTS `lms_main_student` (
+  `STUDENT_ID` varchar(100) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `USERNAME` varchar(100) NOT NULL,
+  `PASSWORD` varchar(100) NOT NULL,
+  `FATHER_NAME` varchar(100) NOT NULL,
+  `DOB` date NOT NULL,
+  `SEX` varchar(10) NOT NULL,
+  `ADDRESS` varchar(100) NOT NULL,
+  `EMAIL_ID` varchar(100) NOT NULL,
+  `MOBILE_NUMBER` varchar(20) NOT NULL,
+  PRIMARY KEY (`STUDENT_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lms_main_student`
+--
+
+INSERT INTO `lms_main_student` (`STUDENT_ID`, `NAME`, `USERNAME`, `PASSWORD`, `FATHER_NAME`, `DOB`, `SEX`, `ADDRESS`, `EMAIL_ID`, `MOBILE_NUMBER`) VALUES
+('12312', 'binay kumar gaur', 'binay', 'binay123', 'Mr. R.A', '1990-01-12', 'Male', 'new delhi', 'binay@gmail.com', '9971246824'),
+('2324', 'binay kumar gaur', 'binay gaur', '5445', 'Mr. R.A', '1990-01-12', 'Male', 'new delhi', 'binay@gmail.com', '9971246824');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lms_main_teacher`
+--
+
+CREATE TABLE IF NOT EXISTS `lms_main_teacher` (
+  `TEACHER_ID` varchar(100) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `USERNAME` varchar(100) NOT NULL,
+  `PASSWORD` varchar(100) NOT NULL,
+  `FATHER_NAME` varchar(100) NOT NULL,
+  `DOB` date NOT NULL,
+  `SEX` varchar(10) NOT NULL,
+  `ADDRESS` varchar(100) NOT NULL,
+  `EMAIL_ID` varchar(100) NOT NULL,
+  `MOBILE_NUMBER` varchar(20) NOT NULL,
+  PRIMARY KEY (`TEACHER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lms_main_teacher`
+--
+
+INSERT INTO `lms_main_teacher` (`TEACHER_ID`, `NAME`, `USERNAME`, `PASSWORD`, `FATHER_NAME`, `DOB`, `SEX`, `ADDRESS`, `EMAIL_ID`, `MOBILE_NUMBER`) VALUES
+('101', 'binay gaur', 'binay', 'binay123', 'Mr. R.A', '1990-01-12', 'Male', 'New Delhi', 'binay@gmail.com', '9971246824'),
+('12345', 'teacher1', 'teacher', 'teacher', '', '0000-00-00', '', '', '', ''),
+('123456', 'fred', 'dswd', 're', '', '0000-00-00', '', '', '', ''),
+('3543', 'bfdgfdg', 'fgfd', '5435', 'fgfds', '2014-06-19', 'Male', 'fgfd', 'fgfd', 'fdgdf'),
+('APS123', 'Anupam Kumar', 'Anupam', 'anupam', 'Mr xyz', '1993-06-09', 'Male', 'new delhi', 'anupam@gmail.com', '9971246824'),
+('cef', 'fred', 'fedf', 're', '', '0000-00-00', '', '', '', ''),
+('er', 'ere', 'rer', 'ere', '', '0000-00-00', '', '', '', ''),
+('rterg', 'dxs', 'fedf', 're', '', '0000-00-00', '', '', '', ''),
+('ryr', 'rgr', 'yry', 'rhr', '', '0000-00-00', '', '', '', ''),
+('scxs', 'ere', 'fedf', 'ere', '', '0000-00-00', '', '', '', ''),
+('vvcd', 'fred', 'ere', 'ere', '', '0000-00-00', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lms_teacher_query`
+--
+
+CREATE TABLE IF NOT EXISTS `lms_teacher_query` (
+  `QUERY_ID` int(100) NOT NULL AUTO_INCREMENT,
+  `ACK_QUERY` int(1) NOT NULL DEFAULT '0',
+  `TEACHER_ID` varchar(100) NOT NULL,
+  `QUERY_STRING` varchar(100) NOT NULL,
+  `QUERY_TIMESTAMP` varchar(100) NOT NULL,
+  PRIMARY KEY (`QUERY_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
+
+--
+-- Dumping data for table `lms_teacher_query`
+--
+
+INSERT INTO `lms_teacher_query` (`QUERY_ID`, `ACK_QUERY`, `TEACHER_ID`, `QUERY_STRING`, `QUERY_TIMESTAMP`) VALUES
+(39, 0, '13', 'hello how r u?', '2014-06-05 16:30:47.538'),
+(40, 0, '13', 'hello how r u?', '2014-06-05 16:31:40.561'),
+(41, 0, '13', 'hello how r u?', '2014-06-05 16:35:39.115'),
+(42, 0, '13', 'hello how r u?', '2014-06-05 16:36:52.448'),
+(43, 0, '13', 'hello how r u?', '2014-06-05 16:37:09.864'),
+(44, 0, '13', 'hello how r u?', '2014-06-05 16:37:34.163'),
+(45, 0, '13', 'hello how r u?', '2014-06-05 16:38:44.362'),
+(46, 0, '13', 'hello how r u?', '2014-06-05 16:40:43.266'),
+(47, 0, '13', 'you are not submitted paper marks.', '2014-06-05 16:42:10.732'),
+(48, 0, '13', 'you are not submitted paper marks.', '2014-06-05 16:42:27.446'),
+(49, 0, '13', 'fgdhf', '2014-06-05 17:14:59.023'),
+(50, 0, 'APS123', 'fdgfdgfd', '2014-06-06 17:32:02.883'),
+(51, 0, 'APS123', 'njffhghgjgh', '2014-06-06 22:35:36.497');
 
 -- --------------------------------------------------------
 
@@ -288,7 +411,8 @@ INSERT INTO `new_chapter` (`Chapter_Id`, `Chapter_Name`, `Descriptions`) VALUES
 (11, 'asda', 'sadsadad'),
 (12, 'Hibernate', 'Hibernate is implementation of orm design pattern.'),
 (13, 'JDBC', 'Java Database Connectivity'),
-(14, 'Struts', 'Implementation of mvc design pattern ');
+(14, 'Struts', 'Implementation of mvc design pattern '),
+(15, 'ghgfh', 'gfhfghgf');
 
 -- --------------------------------------------------------
 
@@ -373,23 +497,25 @@ CREATE TABLE IF NOT EXISTS `student_assignment_marks` (
   `Chapter_Id` int(11) NOT NULL,
   `Assignment_Id` int(11) NOT NULL,
   `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `User_Answer` varchar(255) NOT NULL,
-  `Question` varchar(255) NOT NULL,
+  `User_Answer` varchar(255) NOT NULL DEFAULT 'no',
+  `Question` varchar(255) NOT NULL DEFAULT 'no',
   `Total_Marks` int(11) NOT NULL DEFAULT '0',
   `Obtained_Marks` int(11) NOT NULL DEFAULT '0',
+  `Uploaded_Answer` varchar(100) NOT NULL DEFAULT 'no',
   `Credit` varchar(20) NOT NULL DEFAULT 'no',
   PRIMARY KEY (`Marks_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=69 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
 
 --
 -- Dumping data for table `student_assignment_marks`
 --
 
-INSERT INTO `student_assignment_marks` (`Marks_Id`, `Student_Id`, `Subject_Id`, `Chapter_Id`, `Assignment_Id`, `Date`, `User_Answer`, `Question`, `Total_Marks`, `Obtained_Marks`, `Credit`) VALUES
-(65, 101, 1, 7, 4, '2014-06-03 12:22:17', '0/1 3', '4/5', 8, 4, 'no'),
-(66, 101, 1, 7, 4, '2014-06-03 12:46:04', '2/1 3', '4/5', 8, 8, 'no'),
-(67, 101, 1, 7, 2, '2014-06-03 12:48:38', '1', '2', 4, 4, 'no'),
-(68, 101, 1, 7, 4, '2014-06-03 12:49:03', '2/1 2 4', '4/5', 8, 4, 'no');
+INSERT INTO `student_assignment_marks` (`Marks_Id`, `Student_Id`, `Subject_Id`, `Chapter_Id`, `Assignment_Id`, `Date`, `User_Answer`, `Question`, `Total_Marks`, `Obtained_Marks`, `Uploaded_Answer`, `Credit`) VALUES
+(65, 101, 1, 7, 4, '2014-06-03 12:22:17', '0/1 3', '4/5', 8, 4, '', 'no'),
+(66, 101, 1, 7, 4, '2014-06-03 12:46:04', '2/1 3', '4/5', 8, 8, '', 'no'),
+(67, 101, 1, 7, 2, '2014-06-03 12:48:38', '1', '2', 4, 4, '', 'no'),
+(68, 101, 1, 7, 4, '2014-06-03 12:49:03', '2/1 2 4', '4/5', 8, 4, '', 'no'),
+(69, 101, 1, 7, 5, '2014-06-06 14:56:23', 'no', 'no', 0, 0, '101512.pdf.docx', '');
 
 -- --------------------------------------------------------
 
@@ -428,7 +554,7 @@ CREATE TABLE IF NOT EXISTS `student_query_submission` (
   `Query_Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Answer` varchar(500) NOT NULL DEFAULT '',
   PRIMARY KEY (`Query_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `student_query_submission`
@@ -438,21 +564,9 @@ INSERT INTO `student_query_submission` (`Query_Id`, `Student_Id`, `Notification_
 (1, '101', 1, 'Sir I am submitted the asignment. ', '2014-06-02 12:31:21', ''),
 (2, '101', 2, 'yes it is fine.', '2014-06-02 12:47:05', ''),
 (3, '101', 1, 'I want one more week to submit.', '2014-06-02 12:47:50', ''),
-(4, '101', 3, 'hello', '2014-06-02 15:19:03', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `student_random_number`
---
-
-CREATE TABLE IF NOT EXISTS `student_random_number` (
-  `Random_Id` int(11) NOT NULL AUTO_INCREMENT,
-  `RQuestion_No` int(11) NOT NULL,
-  `Student_Id` int(11) NOT NULL,
-  `Section_No` int(11) NOT NULL,
-  PRIMARY KEY (`Random_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+(4, '101', 3, 'hello', '2014-06-02 15:19:03', ''),
+(5, '101', 3, 'j,vhd,fs', '2014-06-06 14:58:28', ''),
+(6, '101', 3, 'njhghejeghj', '2014-06-06 17:03:11', '');
 
 -- --------------------------------------------------------
 
@@ -472,7 +586,7 @@ CREATE TABLE IF NOT EXISTS `student_test_answer` (
   `Obtained_Marks` int(11) NOT NULL,
   `Total_Marks` int(11) NOT NULL,
   PRIMARY KEY (`Answer_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=94 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=99 ;
 
 --
 -- Dumping data for table `student_test_answer`
@@ -521,7 +635,12 @@ INSERT INTO `student_test_answer` (`Answer_Id`, `Student_Id`, `Subject_Id`, `Cha
 (90, 101, 1, 7, 3, '2014-06-03 15:52:28', '1/3/2 3', '9/11/10', 8, 12),
 (91, 101, 1, 13, 6, '2014-06-03 15:56:43', '2', '16', 4, 4),
 (92, 101, 1, 12, 5, '2014-06-03 15:59:34', '1/1', '15/14', 8, 8),
-(93, 101, 1, 13, 6, '2014-06-03 16:00:46', '2', '16', 4, 4);
+(93, 101, 1, 13, 6, '2014-06-03 16:00:46', '2', '16', 4, 4),
+(94, 101, 1, 7, 1, '2014-06-06 15:16:47', '1/1/1/1', '2/4/3/5', 4, 16),
+(95, 101, 1, 7, 4, '2014-06-06 15:24:45', '0', '0', 0, 8),
+(96, 101, 1, 7, 4, '2014-06-06 15:28:56', '1/1', '12/13', 0, 8),
+(97, 101, 1, 7, 1, '2014-06-06 15:53:31', '0', '0', 0, 16),
+(98, 101, 1, 7, 1, '2014-06-06 17:04:15', '2/2/1 2 4/2', '2/3/4/5', 8, 16);
 
 -- --------------------------------------------------------
 
@@ -578,7 +697,7 @@ CREATE TABLE IF NOT EXISTS `test_options` (
   `Test_Options` varchar(255) NOT NULL,
   `Correct_Ans` varchar(10) NOT NULL,
   PRIMARY KEY (`Option_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `test_options`
@@ -600,7 +719,9 @@ INSERT INTO `test_options` (`Option_Id`, `Question_Id`, `Test_Options`, `Correct
 (13, 13, 'making platform independent#making database independate#making language independent#none of the above', '2'),
 (14, 14, 'orm#mvc#factory #singlton', '1'),
 (15, 15, 'to configure your data source #to configure your table data#to configure data modeling#none of the above', '1'),
-(16, 16, 'reducing complexity#used to fast up of searching#for retrieving data fast#none of the above', '2');
+(16, 16, 'reducing complexity#used to fast up of searching#for retrieving data fast#none of the above', '2'),
+(17, 17, 'trytry#ytrytr#tygfh#fhfg', '1'),
+(18, 18, 'nbvnb#bnc#gh#vc', '2 3');
 
 -- --------------------------------------------------------
 
@@ -615,14 +736,13 @@ CREATE TABLE IF NOT EXISTS `test_questions` (
   `Section_No` int(11) NOT NULL,
   `Question_Type` varchar(100) NOT NULL,
   PRIMARY KEY (`Question_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `test_questions`
 --
 
 INSERT INTO `test_questions` (`Test_Id`, `Question_Id`, `Test_Questions`, `Section_No`, `Question_Type`) VALUES
-(1, 1, 'Java are', 1, 'Multiple'),
 (1, 2, 'j2ee are', 1, 'Single'),
 (1, 3, 'Oops concept are', 2, 'Multiple'),
 (1, 4, 'which one correct syntax', 2, 'Multiple'),
@@ -637,7 +757,11 @@ INSERT INTO `test_questions` (`Test_Id`, `Question_Id`, `Test_Questions`, `Secti
 (4, 13, 'hibernate is used for ', 2, 'Single'),
 (5, 14, 'Hibernate is implemenation of', 1, 'Single'),
 (5, 15, 'configuration file is used for', 1, 'Single'),
-(6, 16, 'Index is used for', 1, 'Single');
+(6, 16, 'Index is used for', 1, 'Single'),
+(7, 17, 'gfdhgfh', 1, 'Single'),
+(7, 18, 'trytry', 2, 'Multiple'),
+(8, 19, 'fgbfh', 1, 'Multiple'),
+(8, 20, 'fghf', 2, 'Single');
 
 -- --------------------------------------------------------
 
